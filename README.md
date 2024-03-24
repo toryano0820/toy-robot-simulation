@@ -2,9 +2,11 @@
 
 This project provides a command execution system for a simulated robot. The system reads commands, interprets them, and applies them to the robot within a defined table space.
 
+
 ## Overview
 
 The `Robot` class simulates a robot that can be placed on a `Table` and moved around. The `Controller` class takes commands and executes them on the `Robot`. Commands are defined in the `Command` enum and include moving the robot, turning it, and reporting its location.
+
 
 ## Setup
 
@@ -22,6 +24,7 @@ To set up the project:
     > ```
     > Above commands should print "Output: 0,0,NORTH".
 
+
 ## Usage
 
 The program can be run in two modes:
@@ -38,6 +41,7 @@ The program can be run in two modes:
     toy_robot_simulation
     ```
 
+
 ## Commands
 
 - `PLACE X,Y,F`: Places the robot on the table at position X,Y facing direction F.
@@ -48,6 +52,7 @@ The program can be run in two modes:
 
 
 ## Testing
+
 To test the project:
 1. Ensure `pytest` is installed (listed in `tests/requirements.txt`).
     ```bash
@@ -70,4 +75,14 @@ To check test coverage:
 3. Print coverage report:
     ```bash
     coverage report
+    ```
+
+
+## Pre-Commit
+
+We use pre-commit in this project to ensure that we are following Python coding standards.  
+To enable pre-commit:
+1. Ensure `pre-commit` is installed (listed in `requirements.txt`).
+    ```bash
+    pip install pre-commit  # or pip install -r requirements.txt
     ```
