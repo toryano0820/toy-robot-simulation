@@ -81,17 +81,13 @@ class TestMain:
 
         mocked_open.assert_called_with("commands.txt")
 
-    def test_main_runs_interactive_mode_if_ran_without_parameters_and_exits_gracefully_on_keyboard_interrupt(
+    def test_main_runs_interactive_mode_if_ran_without_parameters(
         self,
     ):
         mocked_input = MagicMock()
 
         with patch("builtins.input", mocked_input), patch.object(sys, "argv", ["main.py"]):
-
-            def _input_interrupt():
-                raise KeyboardInterrupt
-
-            mocked_input.side_effect = _input_interrupt
+            mocked_input.side_effect = KeyboardInterrupt
             main()
 
         mocked_input.assert_called()

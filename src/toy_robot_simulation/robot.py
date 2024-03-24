@@ -12,8 +12,8 @@ class Offset:
         y (int): The vertical offset.
     """
 
-    x: int = 0
-    y: int = 0
+    x: int
+    y: int
 
 
 @dataclass(frozen=True)
@@ -25,8 +25,8 @@ class Location:
         y (int): The vertical coordinate.
     """
 
-    x: int = 0
-    y: int = 0
+    x: int
+    y: int
 
     def __add__(self, other: Union[Offset, "Location"]) -> "Location":
         """Adds an Offset or another Location to this Location.
@@ -54,8 +54,8 @@ class Table:
         height (int): The height of the table.
     """
 
-    width: int = 5
-    height: int = 5
+    width: int
+    height: int
 
 
 class Direction(Enum):
@@ -82,9 +82,9 @@ class Robot:
     """A robot that can be placed on a table and moved around.
 
     Attributes:
-        table (Table | None): The table on which the robot is placed.
-        location (Location | None): The current location of the robot.
-        direction (Direction | None): The current direction the robot is facing.
+        table (Table): The table on which the robot is placed.
+        location (Location): The current location of the robot.
+        direction (Direction): The current direction the robot is facing.
     """
 
     def __init__(self) -> None:
@@ -113,7 +113,12 @@ class Robot:
         """
         table = table or self.table
         location = location or self.location
-        return 0 <= location.x < table.width and 0 <= location.y < table.height
+        return (
+            table is not None
+            and location is not None
+            and 0 <= location.x < table.width
+            and 0 <= location.y < table.height
+        )
 
     def place(self, table: Table, location: Location, direction: Direction) -> None:
         """Places the robot on the table at the specified location and direction.
@@ -147,8 +152,8 @@ class Robot:
         If both checks pass, the robot's location is updated to the new location.
         """
         if self._check_placed():
-            offset = MOVEMENT_OFFSET_MAP[self.direction]
-            new_location = self.location + offset
+            offset = MOVEMENT_OFFSET_MAP[self.direction]  # type: ignore
+            new_location = self.location + offset  # type: ignore
             if self._check_bounds(location=new_location):
                 self.location = new_location
 
@@ -159,4 +164,7 @@ class Robot:
         The output format is: 'Output: X,Y,DIRECTION'.
         """
         if self._check_placed():
-            print(f"Output: {self.location.x},{self.location.y},{self.direction.value}")
+            print(
+                "Output:",
+                f"{self.location.x},{self.location.y},{self.direction.value}",  # type: ignore
+            )

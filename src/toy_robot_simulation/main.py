@@ -19,11 +19,11 @@ def execute_command(controller: Controller, command: str) -> None:
     """
     command, *args = (command.strip() or "-").split()
     try:
-        if args:
+        if command == "PLACE":
             x, y, f = "".join(args).split(",")
-            args = (TABLE, Location(int(x), int(y)), Direction(f))
-        command = Command(command)
-        controller.execute(Command(command), *args)
+            controller.execute(Command.PLACE, TABLE, Location(int(x), int(y)), Direction(f))
+        else:
+            controller.execute(Command(command))
     except (ValueError, TypeError):
         pass
 
