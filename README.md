@@ -66,7 +66,7 @@ To test the project:
 To check test coverage:
 1. Ensure `coverage` is installed (listed in `tests/requirements.txt`).
     ```bash
-    pip install pytest  # or pip install -r tests/requirements.txt
+    pip install coverage  # or pip install -r tests/requirements.txt
     ```
 2. Run the pytest with coverage:
     ```bash
