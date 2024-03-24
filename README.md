@@ -58,7 +58,7 @@ To test the project:
     ```bash
     pip install pytest  # or pip install -r tests/requirements.txt
     ```
-2. Run the pytest command:
+2. Run pytest command:
     ```bash
     pytest
     ```
@@ -68,7 +68,7 @@ To check test coverage:
     ```bash
     pip install coverage  # or pip install -r tests/requirements.txt
     ```
-2. Run the pytest with coverage:
+2. Run pytest with coverage:
     ```bash
     coverage run -m pytest
     ```
